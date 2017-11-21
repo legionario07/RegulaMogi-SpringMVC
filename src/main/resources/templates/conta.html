@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+<head>
+<meta charset="UTF-8" />
+</head>
+<section layout:fragment="conteudo">
+	<form class="form-horizontal" method="POST" action="/contas"
+		th:object="${conta}">
+
+		<div layout:include="Mensagem"></div>
+
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('login')} ? has-errors">
+					<label class="control-label col-sm-2 is-required" for="login">Login</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="login"
+							th:field="*{login}" placeholder="Digite o login" />
+					</div>
+				</div>
+				
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('senha')} ? has-errors">
+					<label class="control-label col-sm-2" for="senha">Senha</label>
+					<div class="col-sm-4">
+						<input type="password" class="form-control" id="senha" th:field="*{senha}"
+							 placeholder="Digite a Senha" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="perfil" class="col-sm-2 control-label">Perfil</label>
+					<div class="col-sm-2">
+						<select class="form-control" id="perfil" name="perfil" >
+							<option th:each="perfil : ${perfis}" th:value="${perfil.id}" th:text="${perfil.tipo}"></option>
+                    	</select>
+                    </div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">SALVAR</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
+
+</html>

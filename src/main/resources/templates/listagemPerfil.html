@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+<head>
+<meta charset="UTF-8" />
+</head>
+<section layout:fragment="conteudo">
+	<div class="panel-body">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th class="text-center col-md-3">ID</th>
+					<th class="text-center col-md-7">Perfil</th>
+					<th class="text-center col-md-2">Opções</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="perfil : ${perfis}">
+					<td class="text-center" th:text="${perfil.id}"></td>
+					<td class="text-center" th:text="${perfil.tipo}"></td>
+					<td class="text-center">
+					<a class="btn btn-link btn-xs"
+						th:href="@{/perfis/{codigo}(codigo=${perfil.id})}">
+							<span class="glyphicon glyphicon-pencil"></span>
+					</a>
+						<a  class="btn" data-toggle="modal" data-target="#modalDelete" 
+						th:attr="data-id=${perfil.id}, data-tipo=${perfil.tipo}"
+							>
+							<span class="glyphicon glyphicon-trash"></span>
+						</a></td>
+				</tr>
+				<tr>
+					<td class="text-center" colspan="6"
+						th:if="${#lists.isEmpty(perfis)}">Nenhum Dado encontrado.</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="panel-body text-center">
+			<a class="btn btn-primary" href="/perfis/novo" role="button">Novo</a>
+		</div>
+	</div>
+
+<div layout:include="ModalDelete"></div>
+
+</section>
+
+</html>

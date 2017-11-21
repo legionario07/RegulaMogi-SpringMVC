@@ -1,0 +1,36 @@
+.navbar-brand {
+	padding-top: 12px;
+}
+
+.panel-default {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.form-control{
+	margin-bottom:10px;
+}
+
+.panel-body{
+	margin-left: 10px;
+}
+
+
+/*Classe para os campos obrigatórios, coloca um asteriscos no final no nome do campo--*/
+.is-required:after{
+	content:"*";
+}
+
+.glyphicon{
+	margin-left:5px;
+}
+
+.btn-confirmar{
+	background-color: #00bb00;
+	font-weight: bold;
+}
+
+.btn-cancelar{
+	background-color: #ff0000;
+	font-weight: bold;
+}

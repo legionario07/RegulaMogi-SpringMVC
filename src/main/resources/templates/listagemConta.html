@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+<head>
+<meta charset="UTF-8" />
+</head>
+<section layout:fragment="conteudo">
+	<div class="panel-body">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th class="text-center col-md-3">ID</th>
+					<th class="text-center col-md-5">Login</th>
+					<th class="text-center col-md-4">Perfil</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="conta : ${perfis}">
+					<td class="text-center" th:text="${conta.id}"></td>
+					<td class="text-center" th:text="${conta.login}"></td>
+					<td class="text-center" th:text="${conta.perfil.tipo}"></td>
+				</tr>
+				<tr>
+					<td class="text-center" colspan="6"
+						th:if="${#lists.isEmpty(perfis)}">Nenhum Dado encontrado.</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="panel-body text-center">
+			<a class="btn btn-primary" href="/contas/novo" role="button">Novo</a>
+		</div>
+	</div>
+</section>
+
+</html>

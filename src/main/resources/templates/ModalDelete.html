@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<!-- Deletar -->
+<div id="modalDelete" class="modal fade" role="dialog" tabindex="-1"
+	data-keyboard="false" data-backdrop="static">
+	<div class="modal-dialog ">
+
+		<form method="POST" action="/perfis/">
+
+			<input type="hidden" name="_method" value="DELETE" />
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">DELETAR</h4>
+				</div>
+				<div class="modal-body">
+					<span>Tem certeza que deseja apagar?</span>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-default btn-confirmar"
+						onclick="$('#modalDelete').modal('hide')">SIM</button>
+					<button type="button" class="btn btn-default btn-cancelar" data-dismiss="modal">NÃO</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+</html>
