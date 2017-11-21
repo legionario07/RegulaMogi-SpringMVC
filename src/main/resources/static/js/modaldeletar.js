@@ -3,6 +3,7 @@ $('#modalDelete').on('show.bs.modal', function(event) {
 	
 	var idTitulo = button.data('id');
 	var tipo = button.data('tipo');
+	var entidade = button.data('entidade');
 	
 	var modal = $(this);
 	var form = modal.find('form');
@@ -10,7 +11,7 @@ $('#modalDelete').on('show.bs.modal', function(event) {
 	if (!action.endsWith('/')) {
 		action += '/';
 	}
-	form.attr('action', action + idTitulo);
+	form.attr('action', action + entidade+'/'+ idTitulo);
 	
 	modal.find('.modal-body span').html('Tem certeza que deseja excluir o objeto: <strong>' 
 			+ idTitulo + ' - ' + tipo + '</strong>?' );

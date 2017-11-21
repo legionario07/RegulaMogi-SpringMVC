@@ -67,7 +67,6 @@ public class PerfilController {
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
 	public ModelAndView delete(@PathVariable Long id) {
-		System.out.println(id);
 		perfilRepository.delete(id);
 		mv = new ModelAndView("redirect:/perfis/all");
 		

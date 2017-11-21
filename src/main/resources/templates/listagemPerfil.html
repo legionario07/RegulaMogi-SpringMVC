@@ -22,11 +22,11 @@
 					<td class="text-center" th:text="${perfil.tipo}"></td>
 					<td class="text-center">
 					<a class="btn btn-link btn-xs"
-						th:href="@{/perfis/{codigo}(codigo=${perfil.id})}">
+						th:href="@{/perfis/{id}(id=${perfil.id})}">
 							<span class="glyphicon glyphicon-pencil"></span>
 					</a>
 						<a  class="btn" data-toggle="modal" data-target="#modalDelete" 
-						th:attr="data-id=${perfil.id}, data-tipo=${perfil.tipo}"
+						th:attr="data-id=${perfil.id}, data-tipo=${perfil.tipo}, data-entidade='perfis'"
 							>
 							<span class="glyphicon glyphicon-trash"></span>
 						</a></td>

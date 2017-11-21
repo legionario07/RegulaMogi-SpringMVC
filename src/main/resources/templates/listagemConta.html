@@ -11,20 +11,31 @@
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th class="text-center col-md-3">ID</th>
-					<th class="text-center col-md-5">Login</th>
+					<th class="text-center col-md-2">ID</th>
+					<th class="text-center col-md-4">Login</th>
 					<th class="text-center col-md-4">Perfil</th>
+					<th class="text-center col-md-2">Opções</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="conta : ${perfis}">
+				<tr th:each="conta : ${contas}">
 					<td class="text-center" th:text="${conta.id}"></td>
 					<td class="text-center" th:text="${conta.login}"></td>
 					<td class="text-center" th:text="${conta.perfil.tipo}"></td>
+					<td class="text-center">
+					<a class="btn btn-link btn-xs"
+						th:href="@{/contas/{id}(id=${conta.id})}">
+							<span class="glyphicon glyphicon-pencil"></span>
+					</a>
+						<a  class="btn" data-toggle="modal" data-target="#modalDelete" 
+						th:attr="data-id=${conta.id}, data-tipo=${conta.login}, data-entidade='contas'"
+							>
+							<span class="glyphicon glyphicon-trash"></span>
+						</a></td>
 				</tr>
 				<tr>
 					<td class="text-center" colspan="6"
-						th:if="${#lists.isEmpty(perfis)}">Nenhum Dado encontrado.</td>
+						th:if="${#lists.isEmpty(contas)}">Nenhum Dado encontrado.</td>
 				</tr>
 			</tbody>
 		</table>
@@ -32,6 +43,10 @@
 			<a class="btn btn-primary" href="/contas/novo" role="button">Novo</a>
 		</div>
 	</div>
+	
+	<div layout:include="ModalDelete"></div>
+	
+	
 </section>
 
 </html>

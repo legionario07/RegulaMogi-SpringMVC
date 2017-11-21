@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -70,6 +71,23 @@ public class ContaController {
 
 		return mv;
 	}
+	
+	@RequestMapping("{id}")
+	public ModelAndView edit(@PathVariable("id") Conta conta) {
+		mv = new ModelAndView("conta");
+		mv.addObject(conta);
+		return mv;
+		
+	}
+	
+	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+	public ModelAndView delete(@PathVariable Long id) {
+		contaRepository.delete(id);
+		mv = new ModelAndView("redirect:/contas/all");
+		
+		return mv;
+	}
+	
 
 	@RequestMapping("/all")
 	public ModelAndView all() {
@@ -77,7 +95,7 @@ public class ContaController {
 		List<Conta> contas = new ArrayList<Conta>();
 		contas = contaRepository.findAll(new Sort("id"));
 		mv = new ModelAndView("listagemConta");
-		mv.addObject("perfis", contas);
+		mv.addObject("contas", contas);
 		return mv;
 		
 	}
