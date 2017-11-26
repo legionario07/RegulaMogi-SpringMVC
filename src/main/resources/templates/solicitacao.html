@@ -56,7 +56,6 @@
 					</div>
 				</div>
 
-
 				<div class="row"
 					th:classappend="${#fields.hasErrors('dataConsulta')} ? has-errors">
 					<label class="control-label col-sm-2 is-required" for="sis">Data
@@ -78,24 +77,25 @@
 					</div>
 				</div>
 
-
-
 				<div class="row"
 					th:classappend="${#fields.hasErrors('numeroMemorando')} ? has-errors">
 					<label class="control-label col-sm-2 is-required"
 						for="numeroMemorando">Memorando</label>
 					<div class="col-sm-2">
 						<input type="text" class="form-control" id="numeroMemorando"
-							th:field="*{numeroMemorando}"
-							placeholder="Digite o Memorando" />
+							th:field="*{numeroMemorando}" placeholder="Digite o Memorando" />
 					</div>
 				</div>
 
 
 
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-primary">SALVAR</button>
+				<div class="btn-group col-sm-offset-2" role="group">
+					<div class="btn-group mr-2">
+						<button type="submit" class="btn btn-primary btn-solicitacao">SALVAR</button>
+					</div>
+					<div class="btn-group mr-2">
+						<button type="submit" class="btn btn-primary btn-solicitacao">CRIAR
+							ESPECIALIDADE</button>
 					</div>
 				</div>
 			</div>
