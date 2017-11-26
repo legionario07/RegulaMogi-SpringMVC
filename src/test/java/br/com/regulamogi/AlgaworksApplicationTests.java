@@ -1,4 +1,4 @@
-package br.com.cobranca;
+package br.com.regulamogi;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
