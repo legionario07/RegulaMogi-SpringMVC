@@ -7,6 +7,11 @@
 <meta charset="UTF-8" />
 </head>
 <section layout:fragment="conteudo">
+
+	<div style="text-align: center; text-weight: bold; text-size: 20px">
+		<label>PERFIS</label>
+	</div>
+
 	<div class="panel-body">
 		<table class="table table-bordered table-striped">
 			<thead>
@@ -20,16 +25,13 @@
 				<tr th:each="perfil : ${perfis}">
 					<td class="text-center" th:text="${perfil.id}"></td>
 					<td class="text-center" th:text="${perfil.tipo}"></td>
-					<td class="text-center">
-					<a class="btn btn-link btn-xs"
-						th:href="@{/perfis/{id}(id=${perfil.id})}">
-							<span class="glyphicon glyphicon-pencil"></span>
-					</a>
-						<a  class="btn" data-toggle="modal" data-target="#modalDelete" 
-						th:attr="data-id=${perfil.id}, data-tipo=${perfil.tipo}, data-entidade='perfis'"
-							>
+					<td class="text-center"><a class="btn btn-link btn-xs"
+						th:href="@{/perfis/{id}(id=${perfil.id})}"> <span
+							class="glyphicon glyphicon-pencil"></span>
+					</a> <a class="btn" data-toggle="modal" data-target="#modalDelete"
+						th:attr="data-id=${perfil.id}, data-tipo=${perfil.tipo}, data-entidade='perfis'">
 							<span class="glyphicon glyphicon-trash"></span>
-						</a></td>
+					</a></td>
 				</tr>
 				<tr>
 					<td class="text-center" colspan="6"
@@ -42,7 +44,7 @@
 		</div>
 	</div>
 
-<div layout:include="ModalDelete"></div>
+	<div layout:include="ModalDelete"></div>
 
 </section>
 

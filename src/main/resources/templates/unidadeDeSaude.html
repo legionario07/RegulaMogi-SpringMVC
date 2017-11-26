@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+<head>
+<meta charset="UTF-8" />
+</head>
+<section layout:fragment="conteudo">
+	<form class="form-horizontal" method="POST" action="/unidadesDeSaudes"
+		th:object="${unidadeDeSaude}">
+
+		<div layout:include="Mensagem"></div>
+
+		<div class="panel panel-default">
+			<div class="panel-body">
+			
+				<input type="hidden" th:field="*{id}"/>
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('nomeUnidade')} ? has-errors">
+					<label class="control-label col-sm-2 is-required" for="nomeUnidade">Nome</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="nomeUnidade"
+							th:field="*{nomeUnidade}" placeholder="Digite o nome da Unidade" />
+					</div>
+				</div>
+			
+				<input type="hidden" th:field="*{id}"/>
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('conta.login')} ? has-errors">
+					<label class="control-label col-sm-2 is-required" for="login">Login</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="login"
+							th:field="*{conta.login}" placeholder="Digite o login" />
+					</div>
+				</div>
+				
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('conta.senha')} ? has-errors">
+					<label class="control-label col-sm-2" for="senha">Senha</label>
+					<div class="col-sm-4">
+						<input type="password" class="form-control" id="senha" th:field="*{conta.senha}"
+							 placeholder="Digite a Senha" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="perfil" class="col-sm-2 control-label">Perfil</label>
+					<div class="col-sm-2">
+						<select class="form-control" id="perfil" name="perfil" th:field="*{conta.perfil.id}">
+							<option th:each="perfil : ${perfis}" th:value="${perfil.id}" th:text="${perfil.tipo}"></option>
+                    	</select>
+                    </div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">SALVAR</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
+
+</html>

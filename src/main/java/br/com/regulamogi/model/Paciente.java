@@ -1,24 +1,40 @@
 package br.com.regulamogi.model;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Paciente extends EntidadeDominio {
 
+	@NotEmpty(message = "O nome é obrigatório")
 	private String nome;
+	@NotEmpty(message = "O SIS é obrigatório")
+	@Column(unique = true, nullable = false)
 	private String SIS;
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:ss:mm")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar lastLogin;
 	@OneToOne
 	private Conta conta;
+	@ElementCollection(fetch=FetchType.EAGER)
+	@Fetch(FetchMode.SELECT)
+	private List<Telefone> telefones;
+	@ElementCollection(fetch=FetchType.EAGER)
+	private List<Solicitacao> solicitacoes;
 
 	public Paciente(Long id) {
 		this();
@@ -28,6 +44,8 @@ public class Paciente extends EntidadeDominio {
 	public Paciente() {
 		this.conta = new Conta();
 		this.lastLogin = Calendar.getInstance();
+		telefones = new ArrayList<Telefone>();
+		solicitacoes = new ArrayList<Solicitacao>();
 	}
 
 	public String getNome() {
@@ -35,7 +53,7 @@ public class Paciente extends EntidadeDominio {
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome.toUpperCase();
+		this.nome = nome.toUpperCase().trim();
 	}
 
 	public String getSIS() {
@@ -61,6 +79,24 @@ public class Paciente extends EntidadeDominio {
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}
+	
+	public List<Telefone> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(List<Telefone> telefones) {
+		this.telefones = telefones;
+	}
+	
+	public List<Solicitacao> getSolicitacoes() {
+		return solicitacoes;
+	}
+
+	public void setSolicitacoes(List<Solicitacao> solicitacoes) {
+		this.solicitacoes = solicitacoes;
+	}
+
+
 
 	@Override
 	public int hashCode() {
@@ -86,5 +122,7 @@ public class Paciente extends EntidadeDominio {
 			return false;
 		return true;
 	}
+
+	
 
 }

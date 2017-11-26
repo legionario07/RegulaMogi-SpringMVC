@@ -39,7 +39,7 @@ public class Conta extends EntidadeDominio {
 	}
 
 	public void setLogin(String login) {
-		this.login = login.toUpperCase();
+		this.login = login.toUpperCase().trim();
 	}
 
 	public String getSenha() {

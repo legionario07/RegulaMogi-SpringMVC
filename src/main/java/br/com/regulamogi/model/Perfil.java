@@ -30,8 +30,8 @@ public class Perfil extends EntidadeDominio{
 		return tipo;
 	}
 	
-	public void setTipo(String perfil) {
-		this.tipo = perfil.toUpperCase();
+	public void setTipo(String tipo) {
+		this.tipo = tipo.toUpperCase().trim();
 	}
 	
 	@Override

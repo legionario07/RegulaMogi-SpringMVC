@@ -9,49 +9,49 @@
 <section layout:fragment="conteudo">
 
 <div style="text-align:center;text-weight:bold; text-size:20px">
-	<label>CONTAS</label>
+	<label>UNIDADES</label>
 </div>
+
 
 	<div class="panel-body">
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
 					<th class="text-center col-md-2">ID</th>
+					<th class="text-center col-md-4">Nome</th>
 					<th class="text-center col-md-4">Login</th>
-					<th class="text-center col-md-4">Perfil</th>
-					<th class="text-center col-md-2">Opções</th>
+					<th class="text-center col-md-2">Opçoes</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr  th:each="conta : ${contas}">
-					<td class="text-center" th:text="${conta.id}"></td>
-					<td class="text-center" th:text="${conta.login}"></td>
-					<td class="text-center" th:text="${conta.perfil.tipo}"></td>
+				<tr th:each="unidadeDeSaude : ${unidadesDeSaudes}">
+					<td class="text-center" th:text="${unidadeDeSaude.id}"></td>
+					<td class="text-center" th:text="${unidadeDeSaude.nomeUnidade}"></td>
+					<td class="text-center" th:text="${unidadeDeSaude.conta.perfil.tipo}"></td>
 					<td class="text-center">
 					<a class="btn btn-link btn-xs"
-						th:href="@{/contas/{id}(id=${conta.id})}">
+						th:href="@{/unidadesDeSaudes/{id}(id=${unidadeDeSaude.id})}">
 							<span class="glyphicon glyphicon-pencil"></span>
 					</a>
 						<a  class="btn" data-toggle="modal" data-target="#modalDelete" 
-						th:attr="data-id=${conta.id}, data-tipo=${conta.login}, data-entidade='contas'"
+						th:attr="data-id=${unidadeDeSaude.id}, data-tipo=${unidadeDeSaude.nomeUnidade}, data-entidade='unidadesDeSaudes'"
 							>
 							<span class="glyphicon glyphicon-trash"></span>
 						</a></td>
 				</tr>
 				<tr>
 					<td class="text-center" colspan="6"
-						th:if="${#lists.isEmpty(contas)}">Nenhum Dado encontrado.</td>
+						th:if="${#lists.isEmpty(unidadesDeSaudes)}">Nenhum Dado encontrado.</td>
 				</tr>
 			</tbody>
 		</table>
 		<div class="panel-body text-center">
-			<a class="btn btn-primary" href="/contas/novo" role="button">Novo</a>
+			<a class="btn btn-primary" href="/unidadesDeSaudes/novo" role="button">Novo</a>
 		</div>
 	</div>
-	
-	<div layout:include="ModalDelete"></div>
-	
-	
+
+<div layout:include="ModalDelete"></div>
+
 </section>
 
 </html>

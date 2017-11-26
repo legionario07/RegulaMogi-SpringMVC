@@ -7,34 +7,37 @@
 	margin-right: 10px;
 }
 
-.form-control{
-	margin-bottom:10px;
+.form-control {
+	margin-bottom: 10px;
 }
 
-.panel-body{
+.panel-body {
 	margin-left: 10px;
 }
 
-
 /*Classe para os campos obrigatórios, coloca um asteriscos no final no nome do campo--*/
-.is-required:after{
-	content:"*";
+.is-required:after {
+	content: "*";
 }
 
-.glyphicon{
-	margin-left:5px;
+.glyphicon {
+	margin-left: 5px;
 }
 
-.btn-confirmar{
+.btn-confirmar {
 	background-color: #00bb00;
 	font-weight: bold;
 }
 
-.btn-cancelar{
+.btn-cancelar {
 	background-color: #ff0000;
 	font-weight: bold;
 }
 
-.titulo-menu{
+.titulo-menu {
 	font-weight: bold;
+}
+
+.text-center {
+	vertical-align: middle;
 }

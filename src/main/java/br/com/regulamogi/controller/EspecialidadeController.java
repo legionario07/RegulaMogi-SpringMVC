@@ -5,58 +5,46 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.regulamogi.model.Conta;
-import br.com.regulamogi.model.Perfil;
-import br.com.regulamogi.repository.ContaRepository;
-import br.com.regulamogi.repository.PerfilRepository;
-import br.com.regulamogi.utils.EncryptMD5Util;
+import br.com.regulamogi.model.Especialidade;
+import br.com.regulamogi.repository.EspecialidadeRepository;
 
 @Controller
-@RequestMapping("/contas")
-public class ContaController {
+@RequestMapping("/especialidades")
+public class EspecialidadeController {
 
 	@Autowired
-	private ContaRepository contaRepository;
-	@Autowired
-	private PerfilRepository perfilRepository;
-	private ModelAndView mv;
+	private EspecialidadeRepository especialidadeRepository;
 	private String mensagem;
-
+	private ModelAndView mv;
+	
 	@RequestMapping("/novo")
 	public ModelAndView novo() {
-		
-		mv = new ModelAndView("conta");
-		mv.addObject(new Conta());
+
+		mv = new ModelAndView("especialidade");
+		mv.addObject(new Especialidade());
 		return mv;
 		
 	}
-
-	@ModelAttribute("perfis")
-	public List<Perfil> perfis() {
-		return perfilRepository.findAll();
-	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView save(@Validated Conta conta, Errors errors) {
+	public ModelAndView save(@Validated Especialidade especialidade, Errors errors) {
+		mv = new ModelAndView("especialidade");
 		
-		
-		mv = new ModelAndView("conta");
 		if (errors.hasErrors()) {
 			return mv;
 		}
-
+		
 		try {
-			conta.setSenha(EncryptMD5Util.getEncryptMD5(conta.getSenha()));
-			contaRepository.save(conta);
+			especialidadeRepository.save(especialidade);
 
 		} catch (DataIntegrityViolationException c) {
 			mensagem = "Item já existe no Banco de Dados";
@@ -66,38 +54,36 @@ public class ContaController {
 
 		mensagem = "Salvo com sucesso";
 		mv.addObject("mensagem", mensagem);
-		mv.addObject(new Conta());
-
+		mv.addObject(new Especialidade());
+		
 		return mv;
 	}
 	
 	@RequestMapping("{id}")
-	public ModelAndView edit(@PathVariable("id") Conta conta) {
-		mv = new ModelAndView("conta");
-		mv.addObject(conta);
+	public ModelAndView edit(@PathVariable("id") Especialidade especialidade) {
+		mv = new ModelAndView("especialidade");
+		mv.addObject(especialidade);
 		return mv;
 		
 	}
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
 	public ModelAndView delete(@PathVariable Long id) {
-		contaRepository.delete(id);
-		mv = new ModelAndView("redirect:/contas/all");
+		especialidadeRepository.delete(id);
+		mv = new ModelAndView("redirect:/especialidades/all");
 		
 		return mv;
 	}
 	
-
 	@RequestMapping("/all")
 	public ModelAndView all() {
 		
-		List<Conta> contas = new ArrayList<Conta>();
-		//contas = contaRepository.findAll(new Sort("id"));
-		Perfil perfil = new Perfil(2l, "PACIENTE");
-		contas = contaRepository.findByPerfilNotLike(perfil);
-		mv = new ModelAndView("listagemConta");
-		mv.addObject("contas", contas);
+		List<Especialidade> especialidades = new ArrayList<Especialidade>();
+		especialidades = especialidadeRepository.findAll(new Sort("id"));
+		mv = new ModelAndView("listagemEspecialidade");
+		mv.addObject("especialidades", especialidades);
 		return mv;
 		
 	}
+	
 }
