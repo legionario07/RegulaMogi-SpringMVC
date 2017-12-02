@@ -8,9 +8,11 @@
 </head>
 <section layout:fragment="conteudo">
 
-<div style="text-align:center;text-weight:bold; text-size:20px">
-	<label>ESPECIALIDADES</label>
-</div>
+	<div layout:include="MensagemGeral"></div>
+
+	<div style="text-align: center; text-weight: bold; text-size: 20px">
+		<label>ESPECIALIDADES</label>
+	</div>
 
 
 	<div class="panel-body">
@@ -25,21 +27,20 @@
 			<tbody>
 				<tr th:each="especialidade : ${especialidades}">
 					<td class="text-center" th:text="${especialidade.id}"></td>
-					<td class="text-center" th:text="${especialidade.nomeEspecialidade}"></td>
-					<td class="text-center">
-					<a class="btn btn-link btn-xs"
-						th:href="@{/especialidades/{id}(id=${especialidade.id})}">
-							<span class="glyphicon glyphicon-pencil"></span>
-					</a>
-						<a  class="btn" data-toggle="modal" data-target="#modalDelete" 
-						th:attr="data-id=${especialidade.id}, data-tipo=${especialidade.nomeEspecialidade}, data-entidade='especialidades'"
-							>
+					<td class="text-center"
+						th:text="${especialidade.nomeEspecialidade}"></td>
+					<td class="text-center"><a class="btn btn-link btn-xs"
+						th:href="@{/especialidades/{id}(id=${especialidade.id})}"> <span
+							class="glyphicon glyphicon-pencil"></span>
+					</a> <a class="btn" data-toggle="modal" data-target="#modalDelete"
+						th:attr="data-id=${especialidade.id}, data-tipo=${especialidade.nomeEspecialidade}, data-entidade='especialidades'">
 							<span class="glyphicon glyphicon-trash"></span>
-						</a></td>
+					</a></td>
 				</tr>
 				<tr>
 					<td class="text-center" colspan="6"
-						th:if="${#lists.isEmpty(especialidades)}">Nenhum Dado encontrado.</td>
+						th:if="${#lists.isEmpty(especialidades)}">Nenhum Dado
+						encontrado.</td>
 				</tr>
 			</tbody>
 		</table>
@@ -48,7 +49,7 @@
 		</div>
 	</div>
 
-<div layout:include="ModalDelete"></div>
+	<div layout:include="ModalDelete"></div>
 
 </section>
 

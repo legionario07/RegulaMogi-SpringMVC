@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<form class="form-horizontal" method="POST" action="/solicitacoes">
+	<div class="panel-body">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th class="text-center col-md-2">SIS</th>
+					<th class="text-center col-md-4">Nome</th>
+					<th class="text-center col-md-3">Especialidade</th>
+					<th class="text-center col-md-2">Prioridade</th>
+					<th class="text-center col-md-1">Opções</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="solicitacao : ${solicitacoes}">
+					<td class="text-center" th:text="${solicitacao.paciente.SIS}"></td>
+					<td class="text-center" th:text="${solicitacao.paciente.nome}"></td>
+					<td class="text-center"
+						th:text="${solicitacao.especialidade.nomeEspecialidade}"></td>
+					<td class="text-center" th:text="${solicitacao.prioridadeType}"></td>
+					<td class="text-center"><a class="btn btn-link btn-xs"
+						th:href="@{/solicitacoes/{SIS}/{especialidade}(SIS=${solicitacao.paciente.SIS}, especialidade=${solicitacao.especialidade.nomeEspecialidade})}">
+							<span class="glyphicon glyphicon-trash"></span></a>
+					</td>
+				</tr>
+				<tr>
+					<td class="text-center" colspan="6"
+						th:if="${#lists.isEmpty(solicitacoes)}">Nenhuma Solicitação
+						Adicionada.</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="form-group">
+			<div class="col-sm-offset-5 col-sm-10">
+				<button type="submit" class="btn btn-primary">SALVAR</button>
+			</div>
+		</div>
+	</div>
+</form>
+
+</html>

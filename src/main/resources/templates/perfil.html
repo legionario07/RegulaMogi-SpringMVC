@@ -10,16 +10,17 @@
 	<form class="form-horizontal" method="POST" action="/perfis"
 		th:object="${perfil}">
 
-		<div layout:include="Mensagem"></div>
+		<div layout:include="MensagemGeral"></div>
+		<div layout:include="MensagemErro"></div>
 
 		<div class="panel panel-default">
 			<div class="panel-body">
-			<input type="hidden" th:field="*{id}"/>
+				<input type="hidden" th:field="*{id}" />
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('tipo')} ? has-errors">
 					<label class="control-label col-sm-2 is-required" for="tipo">Perfil</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="tipo" 
+						<input type="text" class="form-control" id="tipo"
 							th:field="*{tipo}" placeholder="Digite a Perfil" />
 					</div>
 				</div>

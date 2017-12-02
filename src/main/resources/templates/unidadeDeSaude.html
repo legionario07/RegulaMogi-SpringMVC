@@ -10,7 +10,8 @@
 	<form class="form-horizontal" method="POST" action="/unidadesDeSaudes"
 		th:object="${unidadeDeSaude}">
 
-		<div layout:include="Mensagem"></div>
+		<div layout:include="MensagemGeral"></div>
+		<div layout:include="MensagemErro"></div>
 
 		<div class="panel panel-default">
 			<div class="panel-body">
@@ -25,7 +26,6 @@
 					</div>
 				</div>
 			
-				<input type="hidden" th:field="*{id}"/>
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('conta.login')} ? has-errors">
 					<label class="control-label col-sm-2 is-required" for="login">Login</label>
@@ -39,7 +39,7 @@
 					th:classappend="${#fields.hasErrors('conta.senha')} ? has-errors">
 					<label class="control-label col-sm-2" for="senha">Senha</label>
 					<div class="col-sm-4">
-						<input type="password" class="form-control" id="senha" th:field="*{conta.senha}"
+						<input type="password" style="text-size:10px" class="form-control" id="senha" th:field="*{conta.senha}"
 							 placeholder="Digite a Senha" />
 					</div>
 				</div>

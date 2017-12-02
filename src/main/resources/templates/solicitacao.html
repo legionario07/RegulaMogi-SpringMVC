@@ -7,10 +7,11 @@
 <meta charset="UTF-8" />
 </head>
 <section layout:fragment="conteudo">
-	<form class="form-horizontal" method="POST" action="/solicitacoes"
+	<form class="form-horizontal" method="POST" action="/solicitacoes/adicionar"
 		th:object="${solicitacao}">
 
-		<div layout:include="Mensagem"></div>
+		<div layout:include="MensagemGeral"></div>
+		<div layout:include="MensagemErro"></div>
 
 		<div class="panel panel-default">
 			<div class="panel-body">
@@ -49,7 +50,7 @@
 				<div class="row">
 					<label for="status" class="col-sm-2 control-label is-required">Prioridade</label>
 					<div class="col-sm-3">
-						<select class="form-control" id="prioridade" name="prioridade">
+						<select class="form-control" id="prioridadeType" name="prioridadeType">
 							<option th:each="prioridade : ${prioridadesTypes}"
 								th:value="${prioridade}" th:text="${prioridade}"></option>
 						</select>
@@ -91,16 +92,19 @@
 
 				<div class="btn-group col-sm-offset-2" role="group">
 					<div class="btn-group mr-2">
-						<button type="submit" class="btn btn-primary btn-solicitacao">SALVAR</button>
+						<button type="submit" class="btn btn-primary btn-solicitacao">ADICIONAR</button>
 					</div>
 					<div class="btn-group mr-2">
-						<button type="submit" class="btn btn-primary btn-solicitacao">CRIAR
+						<button class="btn btn-primary btn-solicitacao">CRIAR
 							ESPECIALIDADE</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
+	
+	<div layout:include="TabelaSolicitacoes"></div>
+	
 </section>
 
 </html>
